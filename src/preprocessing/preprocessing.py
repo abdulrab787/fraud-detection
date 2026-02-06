@@ -10,10 +10,10 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 from category_encoders import TargetEncoder
 
+from config import PREPROCESSOR_PATH
+
 def add_time_features(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Feature engineering from transaction timestamp.
-    """
+    
     df = df.copy()
 
     df["Time"] = pd.to_datetime(df["Time"], unit="s")
@@ -29,11 +29,7 @@ def add_time_features(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def preprocess_data(train_path: str, test_path: str):
-    """
-    Full preprocessing pipeline (industry-style).
-    Returns processed train, test, and fitted preprocessor.
-    """
-
+    
     # Load data
     train = pd.read_csv(train_path)
     test = pd.read_csv(test_path)
@@ -104,8 +100,9 @@ def preprocess_data(train_path: str, test_path: str):
     X_test_p = preprocessor.transform(test)
 
     # Save preprocessor for later use
-    joblib.dump(preprocessor, "../models/preprocessor.pkl")
+    from config import PREPROCESSOR_PATH
+    joblib.dump(preprocessor, PREPROCESSOR_PATH)
 
     print("Preprocessing complete. Saved preprocessor.pkl")
 
-    return X_train_p, X_val_p, y_train, y_val, X_test_p
+    return X_train_p, X_val_p, y_train, y_val, X_test_p, preprocessor
