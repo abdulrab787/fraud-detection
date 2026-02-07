@@ -159,7 +159,7 @@ Used **SHAP TreeExplainer** on tuned XGBoost model to provide:
 
 📍 Notebook: `10_shap_explainability.ipynb`
 
----
+
 
 ### **7️⃣ Experiment Tracking (MLflow)**
 
@@ -167,11 +167,6 @@ Logged:
 - Model parameters  
 - Validation metrics (Accuracy, F1)  
 - Trained model artifacts  
-
-Run with:
-```bash
-python -m src.train_with_mlflow
-mlflow ui
 
 ### **8️⃣ Automated Inference & Submission
 python -m src.make_submission
@@ -186,6 +181,7 @@ python -m src.train_with_mlflow
 
 #Generate predictions
 python -m src.make_submission
+
 
 
 🎯 What I Learned 
