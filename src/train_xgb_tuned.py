@@ -41,6 +41,11 @@ for t in thresholds:
         best_t = t
 print(f"\nBest F1: {best_f1:.4f} at threshold: {best_t:.4f}")
 
+# Save validation split for later use
+joblib.dump(X_val, MODELS_DIR / "X_val.pkl")
+joblib.dump(y_val, MODELS_DIR / "y_val.pkl")
+
+print("Saved X_val.pkl and y_val.pkl") 
 
 # Evaluate
 val_preds = xgb_model.predict(X_val)
